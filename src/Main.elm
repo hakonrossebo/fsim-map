@@ -2,7 +2,8 @@ module Main exposing (Model, Msg(..), init, main, update, view)
 
 import Browser
 import Html exposing (Html, div, h1, img, text)
-import Html.Attributes exposing (src)
+import Html.Attributes exposing (attribute, src)
+import Json.Encode
 
 
 
@@ -38,8 +39,14 @@ update msg model =
 view : Model -> Html Msg
 view model =
     div []
-        [ img [ src "/logo.svg" ] []
-        , h1 [] [ text "Your Elm App is working!" ]
+        [ h1 [] [ text "Your Elm App is working!" ]
+        , Html.node "customleaflet-map"
+            [ Html.Attributes.id "fmap"
+            , Html.Attributes.property "latitude" <| Json.Encode.string "65.111222"
+            , Html.Attributes.property "longitude" <| Json.Encode.string "12.000000"
+            , Html.Attributes.property "zoom" <| Json.Encode.string "5"
+            ]
+            []
         ]
 
 

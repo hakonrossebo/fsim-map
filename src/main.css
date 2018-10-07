@@ -9,7 +9,20 @@ h1 {
   font-size: 30px;
 }
 
-img {
+/* img {
   margin: 20px 0;
   max-width: 200px;
+} */
+
+customleaflet-map {
+
+  height: 800px;
+  /* position: absolute; */
+  /* right: -100px; */
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 40%;
+  /* align-content: right; */
+  /* width: 800px; */
 }
