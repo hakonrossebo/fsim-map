@@ -4,6 +4,8 @@ This project is bootstrapped with [Create Elm App](https://github.com/halfzebra/
 
 Below you will find some information on how to perform basic tasks.
 You can find the most recent version of this guide [here](https://github.com/halfzebra/create-elm-app/blob/master/template/README.md).
+## Links
+* https://norgeskart.no/json/norge/
 
 ## Table of Contents
 
@@ -48,7 +50,7 @@ You can find the most recent version of this guide [here](https://github.com/hal
 * [Deployment](#deployment)
   * [Building for Relative Paths](#building-for-relative-paths)
   * [Static Server](#static-server)
-  * [Netlify](#netlify)  
+  * [Netlify](#netlify)
   * [GitHub Pages](#github-pages)
 * [IDE setup for Hot Module Replacement](#ide-setup-for-hot-module-replacement)
 

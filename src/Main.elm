@@ -43,7 +43,7 @@ view model =
         , Html.node "customleaflet-map"
             [ Html.Attributes.id "fmap"
             , Html.Attributes.property "latitude" <| Json.Encode.string "65.111222"
-            , Html.Attributes.property "longitude" <| Json.Encode.string "12.000000"
+            , Html.Attributes.property "longitude" <| Json.Encode.string "11.000000"
             , Html.Attributes.property "zoom" <| Json.Encode.string "5"
             ]
             []
