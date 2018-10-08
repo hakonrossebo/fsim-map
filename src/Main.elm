@@ -23,6 +23,8 @@ defaultAltitude =
 type alias Position =
     { latitude : String
     , longitude : String
+    , utmN : String
+    , utmE : String
     , altitude : Int
     }
 
@@ -43,7 +45,7 @@ init =
 
 type Msg
     = NoOp
-    | MapClick String String
+    | MapClick String String String String
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -52,7 +54,7 @@ update msg model =
         NoOp ->
             ( model, Cmd.none )
 
-        MapClick lat lon ->
+        MapClick lat lon utmN utmE ->
             let
                 a =
                     Debug.log "aa" (lat ++ " - " ++ lon)
@@ -61,7 +63,7 @@ update msg model =
                     outbound ( "SetPosition", Json.Encode.array Json.Encode.string (Array.fromList [ lat, lon ]) )
 
                 pos =
-                    Position lat lon defaultAltitude
+                    Position lat lon utmN utmE defaultAltitude
             in
             ( { model | position = Just pos }, cmd )
 
@@ -80,7 +82,7 @@ view model =
             , Html.Attributes.property "longitude" <| Json.Encode.string "11.000000"
             , Html.Attributes.property "zoom" <| Json.Encode.string "5"
             , Html.Events.on "mapClick" <|
-                Json.Decode.map2 MapClick (Json.Decode.at [ "target", "latitude" ] <| Json.Decode.string) (Json.Decode.at [ "target", "longitude" ] <| Json.Decode.string)
+                Json.Decode.map4 MapClick (Json.Decode.at [ "target", "latitude" ] <| Json.Decode.string) (Json.Decode.at [ "target", "longitude" ] <| Json.Decode.string) (Json.Decode.at [ "target", "utmN" ] <| Json.Decode.string) (Json.Decode.at [ "target", "utmE" ] <| Json.Decode.string)
             ]
             []
         , viewPositionLink model.position
@@ -91,8 +93,8 @@ viewPositionLink : Maybe Position -> Html Msg
 viewPositionLink position =
     case position of
         Just pos ->
-            a [ href ("http://kristoffer-dyrkorn.github.io/flightsimulator/?n=" ++ pos.latitude ++ "&e=" ++ pos.longitude), target "_blank" ]
-                [ text (pos.latitude ++ " - " ++ pos.longitude)
+            a [ href ("http://kristoffer-dyrkorn.github.io/flightsimulator/?n=" ++ pos.utmN ++ "&e=" ++ pos.utmE), target "_blank" ]
+                [ text (pos.utmN ++ " - " ++ pos.utmE)
                 ]
 
         Nothing ->

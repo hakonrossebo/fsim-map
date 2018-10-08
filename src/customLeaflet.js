@@ -2,6 +2,7 @@
 import '../node_modules/leaflet/dist/leaflet.css'
 import '../node_modules/leaflet/dist/leaflet.js'
 import 'tilelayer-kartverket'
+import 'leaflet.utm'
 
 const start = () => {
 
@@ -11,6 +12,8 @@ customElements.define('customleaflet-map', class LeafletMap extends HTMLElement{
     this._longitude = 51.505
     this._latitude = -0.09
     this._zoom = 13
+    this._utmN = ''
+    this._utmE = ''
 
   }
   get longitude () {
@@ -42,12 +45,18 @@ customElements.define('customleaflet-map', class LeafletMap extends HTMLElement{
     this._map.setZoom = value;
   }
 
+  get utmN () {
+    return this._utmN;
+  }
+  get utmE () {
+    return this._utmE;
+  }
   setMarker(lat, lon) {
         var popup = L.popup();
         const pos = L.latLng(lat, lon)
         popup
           .setLatLng(pos)
-          .setContent("Current position " + pos.toString())
+          .setContent("Current position " + pos.utm([33]).toString())
           .openOn(this._map);
 
   }
@@ -68,6 +77,9 @@ customElements.define('customleaflet-map', class LeafletMap extends HTMLElement{
     this._map.addLayer(layer);
 
     this._map.on('click', (e) => {
+        const utm = e.latlng.utm([33]);
+        this._utmN = utm.y.toString();
+        this._utmE = utm.x.toString();
         this._latitude = e.latlng.lat.toString();
         this._longitude = e.latlng.lng.toString();
         this.dispatchEvent(new CustomEvent('mapClick'))
