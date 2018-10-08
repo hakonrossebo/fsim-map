@@ -1,6 +1,7 @@
 
 import '../node_modules/leaflet/dist/leaflet.css'
 import '../node_modules/leaflet/dist/leaflet.js'
+import 'tilelayer-kartverket'
 
 const start = () => {
 
@@ -54,10 +55,11 @@ customElements.define('customleaflet-map', class LeafletMap extends HTMLElement{
     this._map.setView([this._latitude, this._longitude], this._zoom)
 
     var osmUrl='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
-    var osmAttrib='Map data © <a href="https://openstreetmap.org">OpenStreetMap</a> contributors';
+    var osmAttrib='Map data © <a href="https://openstreetmap.org">Kartverket</a> contributors';
     // var osm = new L.TileLayer(osmUrl, {minZoom: 8, maxZoom: 12, attribution: osmAttrib});
-    var osm = new L.TileLayer(osmUrl, {attribution: osmAttrib});
-    this._map.addLayer(osm);
+    // var osm = new L.TileLayer(osmUrl, {attribution: osmAttrib});
+    var layer = new L.TileLayer.Kartverket('matrikkel_bakgrunn', {attribution: osmAttrib});
+    this._map.addLayer(layer);
 
   }
 
