@@ -76,15 +76,25 @@ customElements.define('customleaflet-map', class LeafletMap extends HTMLElement{
     var layer = new L.TileLayer.Kartverket('matrikkel_bakgrunn', {attribution: osmAttrib});
     this._map.addLayer(layer);
 
-    this._map.on('click', (e) => {
-        const utm = e.latlng.utm([33]);
+    this._map.on('move', () => {
+        const c = this._map.getCenter();
+        const utm = c.utm([33]);
         this._utmN = utm.y.toString();
         this._utmE = utm.x.toString();
-        this._latitude = e.latlng.lat.toString();
-        this._longitude = e.latlng.lng.toString();
-        this.dispatchEvent(new CustomEvent('mapClick'))
+        this._latitude = c.lat.toString();
+        this._longitude = c.lng.toString();
+        this.dispatchEvent(new CustomEvent('mapMove'))
 
     });
+    // this._map.on('click', (e) => {
+    //     const utm = e.latlng.utm([33]);
+    //     this._utmN = utm.y.toString();
+    //     this._utmE = utm.x.toString();
+    //     this._latitude = e.latlng.lat.toString();
+    //     this._longitude = e.latlng.lng.toString();
+    //     this.dispatchEvent(new CustomEvent('mapClick'))
+
+    // });
 
 
   }

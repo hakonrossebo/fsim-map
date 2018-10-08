@@ -46,6 +46,7 @@ init =
 type Msg
     = NoOp
     | MapClick String String String String
+    | MapMove String String String String
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -56,11 +57,18 @@ update msg model =
 
         MapClick lat lon utmN utmE ->
             let
-                a =
-                    Debug.log "aa" (lat ++ " - " ++ lon)
-
                 cmd =
                     outbound ( "SetPosition", Json.Encode.array Json.Encode.string (Array.fromList [ lat, lon ]) )
+
+                pos =
+                    Position lat lon utmN utmE defaultAltitude
+            in
+            ( { model | position = Just pos }, cmd )
+
+        MapMove lat lon utmN utmE ->
+            let
+                cmd =
+                    Cmd.none
 
                 pos =
                     Position lat lon utmN utmE defaultAltitude
@@ -82,8 +90,8 @@ view model =
             , Html.Attributes.property "latitude" <| Json.Encode.string "65.111222"
             , Html.Attributes.property "longitude" <| Json.Encode.string "11.000000"
             , Html.Attributes.property "zoom" <| Json.Encode.string "5"
-            , Html.Events.on "mapClick" <|
-                Json.Decode.map4 MapClick (Json.Decode.at [ "target", "latitude" ] <| Json.Decode.string) (Json.Decode.at [ "target", "longitude" ] <| Json.Decode.string) (Json.Decode.at [ "target", "utmN" ] <| Json.Decode.string) (Json.Decode.at [ "target", "utmE" ] <| Json.Decode.string)
+            , Html.Events.on "mapMove" <|
+                Json.Decode.map4 MapMove (Json.Decode.at [ "target", "latitude" ] <| Json.Decode.string) (Json.Decode.at [ "target", "longitude" ] <| Json.Decode.string) (Json.Decode.at [ "target", "utmN" ] <| Json.Decode.string) (Json.Decode.at [ "target", "utmE" ] <| Json.Decode.string)
             ]
             []
         , viewPositionLink model.position

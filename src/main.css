@@ -29,8 +29,8 @@ customleaflet-map {
 .crosshairs:before, .crosshairs:after {
   content: '';
   position: absolute;
-  width: 32px;
-  height: 32px;
+  width: 62px;
+  height: 62px;
   z-index: 999;
   pointer-events: none;
 }
@@ -38,11 +38,11 @@ customleaflet-map {
   bottom: 50%;
   left: 50%;
   transform: translate(-50%, 0);
-  border-bottom: 1px #000 solid;
+  border-bottom: 3px #f00 solid;
 }
 .crosshairs:after {
   right: 50%;
   top: 50%;
   transform: translate(0, -50%);
-  border-right: 1px #000 solid;
+  border-right: 3px #f00 solid;
 }
