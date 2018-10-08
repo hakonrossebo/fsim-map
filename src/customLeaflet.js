@@ -61,6 +61,21 @@ customElements.define('customleaflet-map', class LeafletMap extends HTMLElement{
     var layer = new L.TileLayer.Kartverket('matrikkel_bakgrunn', {attribution: osmAttrib});
     this._map.addLayer(layer);
 
+    this._map.on('click', (e) => {
+      // alert(e.latlng.toString())
+
+        // var popup = L.popup();
+        //   popup
+        // .setLatLng(e.latlng)
+        // .setContent("You clicked the map at " + e.latlng.toString())
+        // .openOn(this._map);
+        this._latitude = e.latlng.lat.toString();
+        this._longitude = e.latlng.lng.toString();
+        this.dispatchEvent(new CustomEvent('mapClick'))
+
+    });
+
+
   }
 
 })
