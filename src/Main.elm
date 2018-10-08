@@ -1,11 +1,15 @@
-module Main exposing (Model, Msg(..), init, main, update, view)
+port module Main exposing (Model, Msg(..), init, main, update, view)
 
+import Array
 import Browser
 import Html exposing (Html, div, h1, img, text)
 import Html.Attributes exposing (attribute, src)
 import Html.Events
 import Json.Decode
-import Json.Encode
+import Json.Encode exposing (..)
+
+
+port outbound : ( String, Value ) -> Cmd msg
 
 
 
@@ -40,8 +44,11 @@ update msg model =
             let
                 a =
                     Debug.log "aa" (lat ++ " - " ++ lon)
+
+                cmd =
+                    outbound ( "SetPosition", Json.Encode.array Json.Encode.string (Array.fromList [ lat, lon ]) )
             in
-            ( model, Cmd.none )
+            ( model, cmd )
 
 
 

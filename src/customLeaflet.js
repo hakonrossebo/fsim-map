@@ -21,7 +21,6 @@ customElements.define('customleaflet-map', class LeafletMap extends HTMLElement{
     this._longitude = value;
     if (!this._map) return
     this._map.longitude = value;
-    // this._map.setView([this._latitude, value], this._zoom)
   }
 
   get latitude () {
@@ -32,7 +31,6 @@ customElements.define('customleaflet-map', class LeafletMap extends HTMLElement{
     this._latitude = value;
     if (!this._map) return
     this._map.latitude = value;
-    // this._map.setView([value, this._longitude], this._zoom)
   }
   get zoom () {
     return this._zoom;
@@ -43,9 +41,17 @@ customElements.define('customleaflet-map', class LeafletMap extends HTMLElement{
     if (!this._map) return
     this._map.setZoom = value;
   }
+
+  setMarker(lat, lon) {
+        var popup = L.popup();
+        const pos = L.latLng(lat, lon)
+        popup
+          .setLatLng(pos)
+          .setContent("Current position " + pos.toString())
+          .openOn(this._map);
+
+  }
  connectedCallback() {	// create the tile layer with correct attribution
-    // this._map = L.map('fmap').setView([51.505, -0.09], 13);
-    // this._map = L.map(this.id).setView([51.505, -0.09], 13);
     if (this._map) return;
     this._map = new L.Map(this.id, {
       center: [this._latitude, this._longitude],
@@ -62,13 +68,6 @@ customElements.define('customleaflet-map', class LeafletMap extends HTMLElement{
     this._map.addLayer(layer);
 
     this._map.on('click', (e) => {
-      // alert(e.latlng.toString())
-
-        // var popup = L.popup();
-        //   popup
-        // .setLatLng(e.latlng)
-        // .setContent("You clicked the map at " + e.latlng.toString())
-        // .openOn(this._map);
         this._latitude = e.latlng.lat.toString();
         this._longitude = e.latlng.lng.toString();
         this.dispatchEvent(new CustomEvent('mapClick'))
