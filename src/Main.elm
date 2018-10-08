@@ -2,8 +2,8 @@ port module Main exposing (Model, Msg(..), init, main, update, view)
 
 import Array
 import Browser
-import Html exposing (Html, div, h1, img, text)
-import Html.Attributes exposing (attribute, src)
+import Html exposing (Html, a, div, h1, img, text)
+import Html.Attributes exposing (attribute, href, src, target)
 import Html.Events
 import Json.Decode
 import Json.Encode exposing (..)
@@ -16,13 +16,25 @@ port outbound : ( String, Value ) -> Cmd msg
 ---- MODEL ----
 
 
+defaultAltitude =
+    2000
+
+
+type alias Position =
+    { latitude : String
+    , longitude : String
+    , altitude : Int
+    }
+
+
 type alias Model =
-    {}
+    { position : Maybe Position
+    }
 
 
 init : ( Model, Cmd Msg )
 init =
-    ( {}, Cmd.none )
+    ( { position = Nothing }, Cmd.none )
 
 
 
@@ -47,8 +59,11 @@ update msg model =
 
                 cmd =
                     outbound ( "SetPosition", Json.Encode.array Json.Encode.string (Array.fromList [ lat, lon ]) )
+
+                pos =
+                    Position lat lon defaultAltitude
             in
-            ( model, cmd )
+            ( { model | position = Just pos }, cmd )
 
 
 
@@ -68,7 +83,20 @@ view model =
                 Json.Decode.map2 MapClick (Json.Decode.at [ "target", "latitude" ] <| Json.Decode.string) (Json.Decode.at [ "target", "longitude" ] <| Json.Decode.string)
             ]
             []
+        , viewPositionLink model.position
         ]
+
+
+viewPositionLink : Maybe Position -> Html Msg
+viewPositionLink position =
+    case position of
+        Just pos ->
+            a [ href ("http://kristoffer-dyrkorn.github.io/flightsimulator/?n=" ++ pos.latitude ++ "&e=" ++ pos.longitude), target "_blank" ]
+                [ text (pos.latitude ++ " - " ++ pos.longitude)
+                ]
+
+        Nothing ->
+            text "Select a postion"
 
 
 
