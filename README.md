@@ -1,5 +1,9 @@
 # Elm App
 
+This is a frontend/starter page for https://github.com/kristoffer-dyrkorn/flightsimulator
+
+The purpose is to provide an easy way to navigate to a start position in the flight simulator.
+
 This project is bootstrapped with [Create Elm App](https://github.com/halfzebra/create-elm-app).
 
 Below you will find some information on how to perform basic tasks.
