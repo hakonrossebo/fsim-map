@@ -5,7 +5,7 @@ import registerServiceWorker from './registerServiceWorker';
 import customMapElement from './customLeaflet';
 import './main.css';
 import mapPorts from './mapPorts';
-import './images/header_final.jpg';
+import './images/fsim_bg.jpg';
 
 
 customMapElement.start();

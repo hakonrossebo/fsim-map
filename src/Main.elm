@@ -3,7 +3,7 @@ port module Main exposing (Model, Msg(..), init, main, update, view)
 import Array
 import Browser
 import Html exposing (Html, a, div, h1, img, text)
-import Html.Attributes exposing (attribute, href, src, target, class)
+import Html.Attributes exposing (attribute, class, href, src, target)
 import Html.Events
 import Json.Decode
 import Json.Encode exposing (..)
@@ -82,8 +82,9 @@ update msg model =
 
 view : Model -> Html Msg
 view model =
-    div [class "bg"]
+    div [ class "bg" ]
         [ h1 [] [ text "Please select a location:" ]
+        , viewPositionLink model.position
         , Html.node "customleaflet-map"
             [ Html.Attributes.id "fmap"
             , Html.Attributes.class "crosshairs"
@@ -94,7 +95,6 @@ view model =
                 Json.Decode.map4 MapMove (Json.Decode.at [ "target", "latitude" ] <| Json.Decode.string) (Json.Decode.at [ "target", "longitude" ] <| Json.Decode.string) (Json.Decode.at [ "target", "utmN" ] <| Json.Decode.string) (Json.Decode.at [ "target", "utmE" ] <| Json.Decode.string)
             ]
             []
-        , viewPositionLink model.position
         ]
 
 
