@@ -1,9 +1,10 @@
 body {
   font-family: 'Source Sans Pro', 'Trebuchet MS', 'Lucida Grande', 'Bitstream Vera Sans', 'Helvetica Neue', sans-serif;
   margin: 0;
-  text-align: center;
+  /* text-align: center; */
   color: #293c4b;
   height: 100%;
+  width: 100%;
   background-image: url("images/fsim_bg.jpg");
   background-position: center;
   background-repeat: no-repeat;
@@ -31,7 +32,7 @@ customleaflet-map {
     display: block;
     margin-left: auto;
     margin-right: auto;
-    width: 40%;
+    /* width: 40%; */
   background-color:rgba(255,0,0,0.0);
   /* align-content: right; */
   /* width: 800px; */
@@ -55,4 +56,31 @@ customleaflet-map {
   top: 50%;
   transform: translate(0, -50%);
   border-right: 3px #f00 solid;
+}
+.grid-header {
+  grid-area: header;
+}
+.grid-main {
+  grid-area: main;
+  padding: 10px;
+}
+.grid-middle {
+  grid-area: middle;
+}
+.grid-sidebar {
+  grid-area: sidebar;
+}
+.grid-footer {
+  grid-area: footer;
+}
+
+.gridcontainer {
+  display: grid;
+  width: 100%;
+  grid-template-columns: 50% 30% 20%;
+  grid-template-rows: 10% 70% auto;
+  grid-template-areas:
+    "header header header"
+    "main middle sidebar"
+    "footer footer footer";
 }

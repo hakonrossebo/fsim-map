@@ -82,19 +82,21 @@ update msg model =
 
 view : Model -> Html Msg
 view model =
-    div [ class "bg" ]
-        [ h1 [] [ text "Please select a location:" ]
-        , viewPositionLink model.position
-        , Html.node "customleaflet-map"
-            [ Html.Attributes.id "fmap"
-            , Html.Attributes.class "crosshairs"
-            , Html.Attributes.property "latitude" <| Json.Encode.string "65.111222"
-            , Html.Attributes.property "longitude" <| Json.Encode.string "11.000000"
-            , Html.Attributes.property "zoom" <| Json.Encode.string "5"
-            , Html.Events.on "mapMove" <|
-                Json.Decode.map4 MapMove (Json.Decode.at [ "target", "latitude" ] <| Json.Decode.string) (Json.Decode.at [ "target", "longitude" ] <| Json.Decode.string) (Json.Decode.at [ "target", "utmN" ] <| Json.Decode.string) (Json.Decode.at [ "target", "utmE" ] <| Json.Decode.string)
+    div [ class "gridcontainer" ]
+        [ h1 [ class "grid-header" ] [ text "Please select a location to start Flightsimulator over Norway:" ]
+        , div [ class "grid-main" ]
+            [ viewPositionLink model.position
+            , Html.node "customleaflet-map"
+                [ Html.Attributes.id "fmap"
+                , Html.Attributes.class "crosshairs"
+                , Html.Attributes.property "latitude" <| Json.Encode.string "65.111222"
+                , Html.Attributes.property "longitude" <| Json.Encode.string "11.000000"
+                , Html.Attributes.property "zoom" <| Json.Encode.string "5"
+                , Html.Events.on "mapMove" <|
+                    Json.Decode.map4 MapMove (Json.Decode.at [ "target", "latitude" ] <| Json.Decode.string) (Json.Decode.at [ "target", "longitude" ] <| Json.Decode.string) (Json.Decode.at [ "target", "utmN" ] <| Json.Decode.string) (Json.Decode.at [ "target", "utmE" ] <| Json.Decode.string)
+                ]
+                []
             ]
-            []
         ]
 
 
