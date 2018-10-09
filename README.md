@@ -4,10 +4,14 @@ This is a frontend/starter page for https://github.com/kristoffer-dyrkorn/flight
 
 The purpose is to provide an easy way to navigate to a start position in the flight simulator.
 
+Todo: Will also include POI quick links.
+
 This project is bootstrapped with [Create Elm App](https://github.com/halfzebra/create-elm-app).
 
 Below you will find some information on how to perform basic tasks.
 You can find the most recent version of this guide [here](https://github.com/halfzebra/create-elm-app/blob/master/template/README.md).
+
+
 ## Links
 * https://norgeskart.no/json/norge/
 
