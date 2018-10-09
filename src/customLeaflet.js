@@ -79,8 +79,8 @@ customElements.define('customleaflet-map', class LeafletMap extends HTMLElement{
     this._map.on('move', () => {
         const c = this._map.getCenter();
         const utm = c.utm([33]);
-        this._utmN = utm.y.toString();
-        this._utmE = utm.x.toString();
+        this._utmN = utm.y.toFixed(1).toString();
+        this._utmE = utm.x.toFixed(1).toString();
         this._latitude = c.lat.toString();
         this._longitude = c.lng.toString();
         this.dispatchEvent(new CustomEvent('mapMove'))

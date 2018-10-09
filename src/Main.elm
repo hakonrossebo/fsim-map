@@ -2,7 +2,7 @@ port module Main exposing (Model, Msg(..), init, main, update, view)
 
 import Array
 import Browser
-import Html exposing (Html, a, div, h1, img, text)
+import Html exposing (Html, a, div, h1, img, p, text)
 import Html.Attributes exposing (attribute, class, href, src, target)
 import Html.Events
 import Json.Decode
@@ -96,6 +96,19 @@ view model =
                     Json.Decode.map4 MapMove (Json.Decode.at [ "target", "latitude" ] <| Json.Decode.string) (Json.Decode.at [ "target", "longitude" ] <| Json.Decode.string) (Json.Decode.at [ "target", "utmN" ] <| Json.Decode.string) (Json.Decode.at [ "target", "utmE" ] <| Json.Decode.string)
                 ]
                 []
+            , text "Tip: The airplane start at a northern direction. Select a location a bit south to see you location in front of you."
+            , p [] [ text "Use mouse-wheel to zoom in/out.The crosshair is the current/selected location." ]
+            ]
+        , div [ class "grid-footer" ]
+            [ p []
+                [ text "This is a frontend/starter page for "
+                , a [ href "https://github.com/kristoffer-dyrkorn/flightsimulator" ] [ text "https://github.com/kristoffer-dyrkorn/flightsimulator" ]
+                , text ". The purpose is to provide an easy way to navigate to a start position in the flight simulator."
+                ]
+            , p []
+                [ text "Please contribute on:"
+                , a [ href "https://github.com/hakonrossebo/fsim-map" ] [ text "https://github.com/hakonrossebo/fsim-map" ]
+                ]
             ]
         ]
 
@@ -104,12 +117,18 @@ viewPositionLink : Maybe Position -> Html Msg
 viewPositionLink position =
     case position of
         Just pos ->
-            a [ href ("http://kristoffer-dyrkorn.github.io/flightsimulator/?n=" ++ pos.utmN ++ "&e=" ++ pos.utmE), target "_blank" ]
-                [ text ("Click this link to start the flightsim on this position " ++ pos.utmN ++ " - " ++ pos.utmE)
+            div []
+                [ a [ href ("http://kristoffer-dyrkorn.github.io/flightsimulator/?n=" ++ pos.utmN ++ "&e=" ++ pos.utmE), target "_blank" ]
+                    [ text ("Click this link to start the flightsim on this position " ++ pos.utmN ++ " - " ++ pos.utmE)
+                    ]
+                , p
+                    []
+                    [ text "The link will open in a new browser tab."
+                    ]
                 ]
 
         Nothing ->
-            text "Select a postion"
+            text "Select a postion to get a link to start the flight simulator."
 
 
 
