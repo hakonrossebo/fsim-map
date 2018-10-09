@@ -3,7 +3,7 @@ port module Main exposing (Model, Msg(..), init, main, update, view)
 import Array
 import Browser
 import Html exposing (Html, a, div, h1, img, text)
-import Html.Attributes exposing (attribute, href, src, target)
+import Html.Attributes exposing (attribute, href, src, target, class)
 import Html.Events
 import Json.Decode
 import Json.Encode exposing (..)
@@ -82,8 +82,8 @@ update msg model =
 
 view : Model -> Html Msg
 view model =
-    div []
-        [ h1 [] [ text "Your Elm App is working!" ]
+    div [class "bg"]
+        [ h1 [] [ text "Please select a location:" ]
         , Html.node "customleaflet-map"
             [ Html.Attributes.id "fmap"
             , Html.Attributes.class "crosshairs"
@@ -103,7 +103,7 @@ viewPositionLink position =
     case position of
         Just pos ->
             a [ href ("http://kristoffer-dyrkorn.github.io/flightsimulator/?n=" ++ pos.utmN ++ "&e=" ++ pos.utmE), target "_blank" ]
-                [ text (pos.utmN ++ " - " ++ pos.utmE)
+                [ text ("Click this link to start the flightsim on this position " ++ pos.utmN ++ " - " ++ pos.utmE)
                 ]
 
         Nothing ->

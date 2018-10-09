@@ -1,9 +1,12 @@
-import './main.css';
-import '../node_modules/@webcomponents/webcomponentsjs/webcomponents-bundle'
+// import '../node_modules/@webcomponents/webcomponentsjs/webcomponents-bundle'
+import './document-register-element'
 import { Elm } from './Main.elm';
 import registerServiceWorker from './registerServiceWorker';
-import customMapElement from './customLeaflet'
-import mapPorts from './mapPorts'
+import customMapElement from './customLeaflet';
+import './main.css';
+import mapPorts from './mapPorts';
+import './images/header_final.jpg';
+
 
 customMapElement.start();
 

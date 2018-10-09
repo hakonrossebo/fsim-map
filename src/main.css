@@ -3,16 +3,25 @@ body {
   margin: 0;
   text-align: center;
   color: #293c4b;
+  height: 100%;
+  background-image: url("images/Flyby-Norway-with-F-16-1.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
+
+html {
+  height: 100%;
+}
+
 
 h1 {
   font-size: 30px;
 }
-
-/* img {
-  margin: 20px 0;
-  max-width: 200px;
-} */
+/* .leaflet-container  { */
+.leaflet-container {
+  background-color:rgba(255,255,255,0.2);
+}
 
 customleaflet-map {
 
@@ -23,6 +32,7 @@ customleaflet-map {
     margin-left: auto;
     margin-right: auto;
     width: 40%;
+  background-color:rgba(255,0,0,0.0);
   /* align-content: right; */
   /* width: 800px; */
 }
