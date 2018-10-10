@@ -31,11 +31,13 @@ type GeoGeometry = {
     Type: string
     Coordinates: decimal array
 }
-type GeoJson = {
+type GeoJsonItem = {
     Type: string
     Properties: GeoProps
     Geometry: GeoGeometry
 }
+
+type GeoJson = {Type: string; Features: GeoJsonItem array}
 
 let write data = 
     let settings =  JsonSerializerSettings()
@@ -52,13 +54,14 @@ let createGeoFjell (data: Document.NorskeFjellOver1000Meter.Row) =
                 {
                 Type = "Feature"
                 Properties = { Navn = data.Namn; Kommune = data.Kommune; Kommunenr = data.Kommunenr; Fylke = data.Fylke; Hoyde = data.``Høgde over havet``}
-                Geometry = {Type = "Point"; Coordinates = [|data.Lat; data.Lon|]}
+                Geometry = {Type = "Point"; Coordinates = [|data.Lon; data.Lat|]}
                 }
 
 
 let processMountains = documentData.Tables.``Norske fjell over 1000 meter``.Rows
                     |> Seq.map (createGeoFjell)
                     |> Seq.toArray
+                    |> (fun x -> {Type = "FeatureCollection"; Features = x})
                     |> write
             
 
