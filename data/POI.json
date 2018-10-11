@@ -1,0 +1,117 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Oslo",
+        "type": "City"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.741882324218748,
+          59.92543116679868
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Bergen",
+        "type": "City"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.333261489868164,
+          60.37607223391753
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Stavanger",
+        "type": "City"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.730056762695312,
+          58.970189560234715
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Kristiansand",
+        "type": "City"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          7.99530029296875,
+          58.14588791374847
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Ålesund",
+        "type": "City"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.157665252685547,
+          62.472517099602086
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Trondheim",
+        "type": "City"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.39100646972656,
+          63.429938834769914
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Bodø",
+        "type": "City"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.373893737792969,
+          67.27874030450378
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Tromsø",
+        "type": "City"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          18.95244598388672,
+          69.64914787933742
+        ]
+      }
+    }
+  ]
+}
