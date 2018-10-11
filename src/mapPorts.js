@@ -10,6 +10,16 @@ const start = app => {
               map.setMarker(lat, lon);
             });
             break;
+          case "FlyTo":
+            requestAnimationFrame(() => {
+              const map = document.querySelector("customleaflet-map");
+              // const map = document.querySelector("#fmap");
+              if (!map) return;
+              const [lat, lon] = pos;
+              const flyToPos = L.latLng(lon, lat)
+              map._map.flyTo(flyToPos, 7);
+            });
+            break;
 
           default:
             break;

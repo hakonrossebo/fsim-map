@@ -67,6 +67,8 @@ customleaflet-map {
 }
 .grid-middle {
   grid-area: middle;
+  padding: 10px;
+  background-color:rgba(255,255,255,0.2);
 }
 .grid-sidebar {
   grid-area: sidebar;
@@ -85,4 +87,14 @@ customleaflet-map {
     "header header header"
     "main middle sidebar"
     "footer footer footer";
+}
+
+.poiLink {
+     cursor:pointer;
+     color:black;
+     text-decoration:underline;
+}
+
+ul {
+  list-style: none;
 }

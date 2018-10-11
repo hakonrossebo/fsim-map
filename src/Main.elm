@@ -2,11 +2,14 @@ port module Main exposing (Model, Msg(..), init, main, update, view)
 
 import Array
 import Browser
-import Html exposing (Html, a, div, h1, img, p, text)
+import GeoJson
+import Html exposing (Html, a, div, h1, h2, h3, img, li, p, text, ul)
 import Html.Attributes exposing (attribute, class, href, src, target)
 import Html.Events
+import Http exposing (get)
 import Json.Decode
 import Json.Encode exposing (..)
+import RemoteData exposing (RemoteData(..), WebData)
 
 
 port outbound : ( String, Value ) -> Cmd msg
@@ -31,22 +34,49 @@ type alias Position =
 
 type alias Model =
     { position : Maybe Position
+    , geoJson : WebData GeoJson.GeoJson
+    }
+
+
+type alias GoeJsonPOIProperties =
+    { name : String
+    , featureType : String
     }
 
 
 init : ( Model, Cmd Msg )
 init =
-    ( { position = Nothing }, Cmd.none )
+    ( { position = Nothing
+      , geoJson = RemoteData.NotAsked
+      }
+    , fetchGeoJson
+    )
+
+
+decodeGeoJsonPOIProperties : Json.Decode.Decoder GoeJsonPOIProperties
+decodeGeoJsonPOIProperties =
+    Json.Decode.map2 GoeJsonPOIProperties
+        (Json.Decode.field "name" Json.Decode.string)
+        (Json.Decode.field "type" Json.Decode.string)
 
 
 
 ---- UPDATE ----
 
 
+fetchGeoJson : Cmd Msg
+fetchGeoJson =
+    Http.get "./data/POI.json" GeoJson.decoder
+        |> RemoteData.sendRequest
+        |> Cmd.map GeoJsonResponse
+
+
 type Msg
     = NoOp
     | MapClick String String String String
     | MapMove String String String String
+    | GeoJsonResponse (WebData GeoJson.GeoJson)
+    | POIClick GeoJson.FeatureObject
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -75,6 +105,28 @@ update msg model =
             in
             ( { model | position = Just pos }, cmd )
 
+        GeoJsonResponse data ->
+            ( { model | geoJson = data }
+            , Cmd.none
+            )
+
+        POIClick feature ->
+            let
+                cmd =
+                    case feature.geometry of
+                        Just geo ->
+                            case geo of
+                                GeoJson.Point ( lat, lon, _ ) ->
+                                    outbound ( "FlyTo", Json.Encode.array Json.Encode.string (Array.fromList [ String.fromFloat lat, String.fromFloat lon ]) )
+
+                                _ ->
+                                    Cmd.none
+
+                        Nothing ->
+                            Cmd.none
+            in
+            ( model, cmd )
+
 
 
 ---- VIEW ----
@@ -99,6 +151,7 @@ view model =
             , text "Tip: The airplane start at a northern direction. Select a location a bit south to see you location in front of you."
             , p [] [ text "Use mouse-wheel to zoom in/out.The crosshair is the current/selected location." ]
             ]
+        , viewGeoJson model.geoJson
         , div [ class "grid-footer" ]
             [ p []
                 [ text "This is a frontend/starter page for "
@@ -111,6 +164,49 @@ view model =
                 ]
             ]
         ]
+
+
+viewGeoJson : WebData GeoJson.GeoJson -> Html Msg
+viewGeoJson webdata =
+    case webdata of
+        NotAsked ->
+            text "Initialising."
+
+        Loading ->
+            text "Loading."
+
+        Failure err ->
+            text "Error: "
+
+        Success data ->
+            div [ class "grid-middle" ]
+                [ h3 []
+                    [ text "Points of interest"
+                    ]
+                , viewPOIData data
+                ]
+
+
+viewPOIData : GeoJson.GeoJson -> Html Msg
+viewPOIData ( geoObject, _ ) =
+    case geoObject of
+        GeoJson.FeatureCollection featureList ->
+            featureList
+                |> List.map viewPOIListItem
+                |> ul []
+
+        _ ->
+            text "No POI data"
+
+
+viewPOIListItem : GeoJson.FeatureObject -> Html Msg
+viewPOIListItem feature =
+    case Json.Decode.decodeValue decodeGeoJsonPOIProperties feature.properties of
+        Ok props ->
+            li [ Html.Events.onClick (POIClick feature), class "poiLink" ] [ text props.name ]
+
+        Err _ ->
+            text ""
 
 
 viewPositionLink : Maybe Position -> Html Msg
