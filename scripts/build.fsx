@@ -18,7 +18,7 @@ open System.IO
 open Newtonsoft.Json
 open Newtonsoft.Json.Serialization
 
-let newFile = __SOURCE_DIRECTORY__ + @"/../data/NorskeFjell1000m.json"
+let newFile = __SOURCE_DIRECTORY__ + @"/../public/data/NorskeFjell1000m.json"
 
 type GeoProps = {
     Navn: string
