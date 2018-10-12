@@ -112,6 +112,316 @@
           69.64914787933742
         ]
       }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Lysefjorden",
+        "type": "Fjord"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.165904998779297,
+          58.95762187566485
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Hardangerfjorden",
+        "type": "Fjord"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.60003662109375,
+          60.22753896185882
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Sognefjorden",
+        "type": "Fjord"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.5753173828125,
+          61.11273265017553
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Nærøyfjorden",
+        "type": "Fjord"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.860103607177734,
+          60.89129107952727
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Aurlandsfjorden",
+        "type": "Fjord"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          7.1486663818359375,
+          60.88034968207294
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Geirangerfjorden",
+        "type": "Fjord"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          7.208061218261718,
+          62.09062762034619
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Hjørundfjorden",
+        "type": "Fjord"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.5938568115234375,
+          62.14529686129449
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Nordfjord",
+        "type": "Fjord"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.7396697998046875,
+          61.87330971812805
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Lyngenfjorden",
+        "type": "Fjord"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          20.28694152832031,
+          69.48500375084643
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Balsfjord",
+        "type": "Fjord"
+        },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          19.03553009033203,
+          69.39856174385082
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Porsangerfjorden",
+        "type": "Fjord"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          25.44158935546875,
+          70.44967031376765
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Oslofjorden",
+        "type": "Fjord"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.6292724609375,
+          59.53884357583346
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Preikestolen",
+        "type": "Fjell"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.188671588897705,
+          58.986312851483206
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Kjeragbolten",
+        "type": "Fjell"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.593116521835327,
+          59.03362174173307
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Gaustatoppen",
+        "type": "Fjell"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.66546630859375,
+          59.84817777781562
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Trolltunga",
+        "type": "Fjell"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.7545318603515625,
+          60.13156812902858
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Besseggen",
+        "type": "Fjell"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.719797134399414,
+          61.50152952614985
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Galdhøpiggen",
+        "type": "Fjell"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.312530517578125,
+          61.63625834285636
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Romsdalseggen",
+        "type": "Fjell"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          7.798061370849609,
+          62.54652637334784
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Stetinden",
+        "type": "Fjell"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.593561172485348,
+          68.1650118197353
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Snøhetta",
+        "type": "Fjell"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.267740249633789,
+          62.31987996837109
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Trollveggen",
+        "type": "Fjell"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          7.718024253845215,
+          62.48581307529713
+        ]
+      }
     }
+
+
   ]
 }
