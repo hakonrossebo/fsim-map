@@ -1,4 +1,5 @@
 # Elm App
+Start the simulator here: https://hakonrossebo.github.io/fsim-map/
 
 This is a frontend/starter page for https://github.com/kristoffer-dyrkorn/flightsimulator
 
