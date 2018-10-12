@@ -17,7 +17,7 @@ const start = app => {
               if (!map) return;
               const [lat, lon] = pos;
               const flyToPos = L.latLng(lon, lat)
-              map._map.flyTo(flyToPos, 7);
+              map._map.flyTo(flyToPos, 11);
             });
             break;
 
