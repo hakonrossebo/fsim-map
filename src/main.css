@@ -6,9 +6,11 @@ body {
   height: 100%;
   width: 100%;
   background-image: url("images/fsim_bg.jpg");
+  background-color: #0f83db;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  background-color:rgba(255,255,255,0.6);
 }
 
 html {
@@ -63,15 +65,17 @@ customleaflet-map {
 .grid-main {
   grid-area: main;
   padding: 10px;
-  background-color:rgba(255,255,255,0.2);
+  background-color:rgba(255,255,255,0.4);
 }
 .grid-middle {
   grid-area: middle;
   padding: 10px;
-  background-color:rgba(255,255,255,0.2);
+  background-color:rgba(255,255,255,0.4);
 }
 .grid-sidebar {
   grid-area: sidebar;
+  padding: 10px;
+  background-color:rgba(255,255,255,0.2);
 }
 .grid-footer {
   grid-area: footer;
@@ -81,12 +85,14 @@ customleaflet-map {
 .gridcontainer {
   display: grid;
   width: 100%;
+  min-height: 100%;
   grid-template-columns: 50% 30% 20%;
-  grid-template-rows: 10% 70% auto;
+  grid-template-rows: auto 1fr auto;
   grid-template-areas:
     "header header header"
     "main middle sidebar"
     "footer footer footer";
+  background-color:rgba(255,255,255,0.6);
 }
 
 .poiLink {

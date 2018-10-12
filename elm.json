@@ -1,6 +1,5 @@
 {
     "type": "application",
-    "homepage": "https://hakonrossebo.github.io/fsim-map/",
     "source-directories": [
         "src"
     ],
