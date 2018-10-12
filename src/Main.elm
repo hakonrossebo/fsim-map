@@ -3,9 +3,9 @@ port module Main exposing (Model, Msg(..), init, main, update, view)
 import Array
 import Browser
 import GeoJson
-import Html exposing (Html, a, div, h1, h2, h3, img, li, p, text, ul)
-import Html.Attributes exposing (attribute, class, href, src, target)
-import Html.Events
+import Html exposing (Html, a, div, h1, h2, h3, img, input, li, p, span, text, ul)
+import Html.Attributes exposing (attribute, class, href, max, min, src, target, type_, value)
+import Html.Events exposing (onInput)
 import Http exposing (get)
 import Json.Decode
 import Json.Encode exposing (..)
@@ -35,6 +35,7 @@ type alias Position =
 type alias Model =
     { position : Maybe Position
     , geoJson : WebData GeoJson.GeoJson
+    , altitude : Int
     }
 
 
@@ -48,6 +49,7 @@ init : ( Model, Cmd Msg )
 init =
     ( { position = Nothing
       , geoJson = RemoteData.NotAsked
+      , altitude = 2500
       }
     , fetchGeoJson
     )
@@ -77,6 +79,7 @@ type Msg
     | MapMove String String String String
     | GeoJsonResponse (WebData GeoJson.GeoJson)
     | POIClick GeoJson.FeatureObject
+    | UpdateAltitude String
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -127,6 +130,14 @@ update msg model =
             in
             ( model, cmd )
 
+        UpdateAltitude altitude ->
+            case String.toInt altitude of
+                Just alt ->
+                    ( { model | altitude = alt }, Cmd.none )
+
+                Nothing ->
+                    ( model, Cmd.none )
+
 
 
 ---- VIEW ----
@@ -137,7 +148,7 @@ view model =
     div [ class "gridcontainer" ]
         [ h1 [ class "grid-header" ] [ text "Please select a location to start Flightsimulator over Norway:" ]
         , div [ class "grid-main" ]
-            [ viewPositionLink model.position
+            [ viewPositionLink model.position model.altitude
             , Html.node "customleaflet-map"
                 [ Html.Attributes.id "fmap"
                 , Html.Attributes.class "crosshairs"
@@ -209,14 +220,29 @@ viewPOIListItem feature =
             text ""
 
 
-viewPositionLink : Maybe Position -> Html Msg
-viewPositionLink position =
+viewAltitudeSlider altitude =
+    div []
+        [ input
+            [ type_ "range"
+            , min "2000"
+            , max "20000"
+            , value <| String.fromInt altitude
+            , onInput UpdateAltitude
+            ]
+            []
+        , text <| "Altitude: " ++ String.fromInt altitude ++ " meters"
+        ]
+
+
+viewPositionLink : Maybe Position -> Int -> Html Msg
+viewPositionLink position altitude =
     case position of
         Just pos ->
-            div []
-                [ a [ href ("http://kristoffer-dyrkorn.github.io/flightsimulator/?n=" ++ pos.utmN ++ "&e=" ++ pos.utmE), target "_blank" ]
+            span []
+                [ a [ href ("http://kristoffer-dyrkorn.github.io/flightsimulator/?n=" ++ pos.utmN ++ "&e=" ++ pos.utmE ++ "&a=" ++ String.fromInt altitude), target "_blank" ]
                     [ text ("Click this link to start the flightsim on this position " ++ pos.utmN ++ " - " ++ pos.utmE)
                     ]
+                , viewAltitudeSlider altitude
                 , p
                     []
                     [ text "The link will open in a new browser tab."
