@@ -1,14 +1,14 @@
 {
-  "main.css": "/fsim-map/static/css/main.2bd448f3.chunk.css",
-  "main.js": "/fsim-map/static/js/main.7873fd4f.chunk.js",
-  "main.css.map": "/fsim-map/static/css/main.2bd448f3.chunk.css.map",
-  "main.js.map": "/fsim-map/static/js/main.7873fd4f.chunk.js.map",
-  "vendors~main.css": "/fsim-map/static/css/vendors~main.28d5d8c9.chunk.css",
-  "vendors~main.js": "/fsim-map/static/js/vendors~main.fed1af24.chunk.js",
-  "vendors~main.css.map": "/fsim-map/static/css/vendors~main.28d5d8c9.chunk.css.map",
-  "vendors~main.js.map": "/fsim-map/static/js/vendors~main.fed1af24.chunk.js.map",
-  "runtime~main.js": "/fsim-map/static/js/runtime~main.01e23531.js",
-  "runtime~main.js.map": "/fsim-map/static/js/runtime~main.01e23531.js.map",
-  "static/media/fsim_bg.jpg": "/fsim-map/static/media/fsim_bg.20db3d56.jpg",
-  "index.html": "/fsim-map/index.html"
+  "main.css": "/static/css/main.0f78ebe3.chunk.css",
+  "main.js": "/static/js/main.88ecf198.chunk.js",
+  "main.css.map": "/static/css/main.0f78ebe3.chunk.css.map",
+  "main.js.map": "/static/js/main.88ecf198.chunk.js.map",
+  "vendors~main.css": "/static/css/vendors~main.c2edbcbe.chunk.css",
+  "vendors~main.js": "/static/js/vendors~main.0e3d2a6d.chunk.js",
+  "vendors~main.css.map": "/static/css/vendors~main.c2edbcbe.chunk.css.map",
+  "vendors~main.js.map": "/static/js/vendors~main.0e3d2a6d.chunk.js.map",
+  "runtime~main.js": "/static/js/runtime~main.229c360f.js",
+  "runtime~main.js.map": "/static/js/runtime~main.229c360f.js.map",
+  "static/media/fsim_bg.jpg": "/static/media/fsim_bg.20db3d56.jpg",
+  "index.html": "/index.html"
 }
