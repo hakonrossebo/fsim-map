@@ -163,6 +163,7 @@ view model =
             , p [] [ text "Use mouse-wheel to zoom in/out.The crosshair is the current/selected location." ]
             ]
         , viewGeoJson model.geoJson
+        , div [ class "grid-sidebar" ] []
         , div [ class "grid-footer" ]
             [ p []
                 [ text "This is a frontend/starter page for "
