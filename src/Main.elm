@@ -240,7 +240,7 @@ viewPositionLink position altitude =
     case position of
         Just pos ->
             span []
-                [ a [ href ("http://kristoffer-dyrkorn.github.io/flightsimulator/?n=" ++ pos.utmN ++ "&e=" ++ pos.utmE ++ "&a=" ++ String.fromInt altitude), target "_blank" ]
+                [ a [ href ("https://kristoffer-dyrkorn.github.io/flightsimulator/?n=" ++ pos.utmN ++ "&e=" ++ pos.utmE ++ "&a=" ++ String.fromInt altitude), target "_blank" ]
                     [ text ("Click this link to start the flightsim on this position " ++ pos.utmN ++ " - " ++ pos.utmE)
                     ]
                 , viewAltitudeSlider altitude

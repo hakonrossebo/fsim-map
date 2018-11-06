@@ -1,7 +1,7 @@
 // import '../node_modules/@webcomponents/webcomponentsjs/webcomponents-bundle'
 import './document-register-element'
 import { Elm } from './Main.elm';
-import registerServiceWorker from './registerServiceWorker';
+import {register, unregister} from './registerServiceWorker';
 import customMapElement from './customLeaflet';
 import './main.css';
 import mapPorts from './mapPorts';
@@ -15,4 +15,4 @@ var app = Elm.Main.init({
 });
 mapPorts.start(app);
 
-registerServiceWorker();
+unregister();
